@@ -48,13 +48,16 @@ class Product extends Controller
 		$insertOrder=OrderModel::create($data_order);
 		queueOrder::dispatch($order_no)->delay(Carbon::now()->addMinutes(5));
 
-		Session::put('order_no',$order_no);
-		return redirect('success')
-		->with('total',$insertProduct->total)
-		->with('transaction_type',$data_order['orderable_type'])
-		->with('product',$data_product['product'])
-		->with('shipping_address',$data_product['shipping_address'])
-		->with('price',$data_product['price']);
+		$orderTempt=array(
+			'order_no'=>$order_no,
+			'order_type'=>$data_order['orderable_type'],
+			'product'=>$data_product['product'],
+			'shipping_address'=>$data_product['shipping_address'],
+			'price'=>$data_product['price'],
+			'total'=>$insertProduct->total
+			);
+		Session::put('orderTempt',$orderTempt);
+		return redirect('success');
 	}
 
 	function validateForm(Request $request){

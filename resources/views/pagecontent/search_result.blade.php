@@ -20,7 +20,7 @@
 	<div class="col-xs-4 text-center">
 		<h4 class="text-success"> Success</h4>
 	</div>
-	@elseif($order->status_order_id==1 and $order->order_type=='product')
+	@elseif($order->status_order_id==1 and $order->type=='product')
 	<div class="col-xs-4 text-center">
 		<h6> Shipping code</h6>
 		<h6> {{$order->shipping_code}}</h6>

@@ -24,10 +24,10 @@
 		@endif
 		<form method="post" action="{{route('login_action')}}">
 			<div class="form-group">
-				<input class="form-control" name="email" type="email" placeholder="Email">	
+				<input class="form-control" name="email" type="email" value="{{old('email')}}" placeholder="Email">	
 			</div>
 			<div class="form-group">
-				<input class="form-control" name="password" type="password" placeholder="Password">	
+				<input class="form-control" name="password" type="password"  placeholder="Password">	
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-info btn-block">Login</button>	

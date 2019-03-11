@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
 	<div class="col-xs-12">
-		<?php // print_r(\Session::get('data'));die; ?>
+		<?php $order=Session::get('orderTempt');?>
 		<h2><strong>Success!</strong></h2>
 		<div class="row">
 			<div class="col-xs-6 text-left">
@@ -10,17 +10,17 @@
 				<p>Total</p>
 			</div>
 			<div class="col-xs-6 text-right">
-				<p>{{Session::get('order_no')}}</p>
-				<p>Rp {{Session::get('total')}}</p>
+				<p>{{$order['order_no']}}</p>
+				<p>Rp {{$order['total']}}</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				@if(Session::get('orderable_type')=='App\BalanceModel')
-				<p>Your mobile phone number {{Session::get('mobile_number')}} will receive Rp {{Session::get('price')}}</p>
-				@elseif(Session::get('orderable_type')=='App\ProductModel')
-				<p>{{Session::get('product')}} that costs {{Session::get('price')}} will be shipped to:</p>
-				<p>{{Session::get('shipping_address')}}</p>
+				@if($order['order_type']=='App\BalanceModel')
+				<p>Your mobile phone number {{$order['mobile_number']}} will receive Rp {{$order['price']}}</p>
+				@elseif($order['order_type']=='App\ProductModel')
+				<p>{{$order['product']}} that costs {{$order['price']}} will be shipped to:</p>
+				<p>{{$order['shipping_address']}}</p>
 				<p>only after you pay.</p>
 				@endif
 			</div>

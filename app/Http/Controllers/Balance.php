@@ -49,12 +49,15 @@ class Balance extends Controller
 		$insertOrder=OrderModel::create($data_order);
 		queueOrder::dispatch($order_no)->delay(Carbon::now()->addMinutes(5));
 
-		Session::put('order_no',$order_no);
-		return redirect('success')
-		->with('total',$insertProduct->total)
-		->with('transaction_type',$data_order['orderable_type'])
-		->with('mobile_number',$data_balance['mobile_number'])
-		->with('price',$data_balance['value']);
+		$orderTempt=array(
+			'order_no'=>$order_no,
+			'order_type'=>$data_order['orderable_type'],
+			'mobile_number'=>$data_balance['mobile_number'],
+			'price'=>$data_balance['value'],
+			'total'=>$insertProduct	->total
+			);
+		Session::put('orderTempt',$orderTempt);
+		return redirect('success');
 	}
 
 	function validateForm(Request $request){

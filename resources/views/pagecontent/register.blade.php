@@ -14,13 +14,13 @@
 		@endif
 		<form method="post" action="{{route('register_action')}}">
 			<div class="form-group">
-				<input class="form-control" name="name" type="text" placeholder="Name">	
+				<input class="form-control" name="name" type="text" value="{{old('name')}}" placeholder="Name">	
 			</div>
 			<div class="form-group">
-				<input class="form-control" name="email" type="email" placeholder="Email">	
+				<input class="form-control" name="email" type="email" value="{{old('email')}}" placeholder="Email">	
 			</div>
 			<div class="form-group">
-				<input class="form-control" name="password" type="password" placeholder="Password">	
+				<input class="form-control" name="password" type="password" value="{{old('password')}}" placeholder="Password">	
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-info btn-block">Register</button>	

@@ -18,16 +18,17 @@ class Payment extends Controller
     public function index()
     {
     	$orderNo='';
-    	if (Session::has('order_no')) {
-    		$orderNo=Session::get('order_no');
-    		Session::forget('order_no');
+    	if (Session::has('orderTempt')) {
+    		$orderNo=Session::get('orderTempt')['order_no'];
+    		Session::forget('orderTempt');
     	} 
         return view('pagecontent.payment',['orderNo'=>$orderNo]);
     }
 
     public function getOrderNo($orderNo)
     {
-    	Session::put('order_no',$orderNo);
+        $orderTempt=array('order_no'=>$orderNo);
+    	Session::put('orderTempt',$orderTempt);
         return redirect('payment');
     }
 
